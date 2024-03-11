@@ -17,29 +17,25 @@
 
 using namespace std;
 
-void rev(string& s,int k){    
-    char t = '0';
-    int pos = 0, cnt=0;
-    while(k--){
-        for(int i=cnt;i<s.length();i++){
-        	if(s[i]>=t){
-            	t = s[i];
-            	pos = i;
-        	}
-    	}
-    	swap(s[0],s[pos]);
-        cnt++;
+void s_min(int a[],int n){
+    vector<int> v1,v2;
+    For(i,0,n){
+        if(i&1) v2.pb(a[i]);
+        else v1.pb(a[i]);
     }
-    cout << s << endl;
+    ll sum1 = 0, sum2 = 0;
+    for(auto x:v1) sum1 = sum1*10 + x;
+    for(auto x:v2) sum2 = sum2*10 + x;
+    cout << sum1 + sum2 << endl;
 }
-
 void solve(){
     int t; cin>>t;
     while(t--){
-        int k; cin>>k;
-        clean();
-        string s; cin>>s;
-        rev(s,k);
+        int n; cin>>n;
+        int a[n];
+        For(i,0,n) cin>>a[i];
+        sort(a,a+n);
+        s_min(a,n);
     }
 }
 int main(){

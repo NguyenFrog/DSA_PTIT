@@ -17,33 +17,30 @@
 
 using namespace std;
 
-vector<int> v;
-void print(){
-    string s = "[";
-    for(auto x:v) s += to_string(x) + " ";
-    s.pop_back();
-    s += "]";
+void rev(string& s,int k){    
+    char t = '0';
+    int pos = 0, cnt=0;
+    while(k--){
+        for(int i=cnt;i<s.length();i++){
+        	if(s[i]>=t){
+        		t = s[i];
+        		pos = i;
+			}
+    	}
+    	swap(s[cnt],s[pos]);
+    	t = '0';
+        cnt++;
+    }
     cout << s << endl;
 }
-void refresh(){
-    vector<int> rf;
-    for(int i=0;i<v.size()-1;i++){
-        rf.pb(v[i] + v[i+1]);
-    }
-    v = rf;
-}
+
 void solve(){
     int t; cin>>t;
     while(t--){
-        int n; cin>>n;
-        For(i,0,n){
-            int x; cin>>x;
-            v.pb(x);
-        }
-        do{
-            print();
-            refresh();
-        }while(v.size());
+        int k; cin>>k;
+        clean();
+        string s; cin>>s;
+        rev(s,k);
     }
 }
 int main(){

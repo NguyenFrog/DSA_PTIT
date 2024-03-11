@@ -17,29 +17,19 @@
 
 using namespace std;
 
-void rev(string& s,int k){    
-    char t = '0';
-    int pos = 0, cnt=0;
-    while(k--){
-        for(int i=cnt;i<s.length();i++){
-        	if(s[i]>=t){
-            	t = s[i];
-            	pos = i;
-        	}
-    	}
-    	swap(s[0],s[pos]);
-        cnt++;
-    }
-    cout << s << endl;
-}
-
 void solve(){
     int t; cin>>t;
     while(t--){
-        int k; cin>>k;
-        clean();
-        string s; cin>>s;
-        rev(s,k);
+        int n; cin>>n;
+        int a[n];
+        For(i,0,n) cin>>a[i];
+        sort(a,a+n);
+        ll sum = 0;
+        For(i,0,n){
+            sum += a[i]*i;
+            sum %= mod;
+        }
+        cout << sum << endl;
     }
 }
 int main(){
