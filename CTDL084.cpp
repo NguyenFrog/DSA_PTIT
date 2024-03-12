@@ -16,8 +16,9 @@
 #define pause() system("pause");
 
 using namespace std;
+
+ll ans[101];
 vector<ll> v;
-ll ans[501];
 void build(){
     queue<string> q;
     q.push("9");
@@ -25,15 +26,15 @@ void build(){
     while(!q.empty()){
         string top = q.front();
         q.pop();
-        if(top.length()>13) break;
-        q.push(top + '0');
-        q.push(top + '9');
-        v.pb(stoll(top + '0'));
-        v.pb(stoll(top + '9'));
+        if(top.length()>15) break;
+        q.push(top + "0");
+        q.push(top + "9");
+        v.pb(stoll(top + "0"));
+        v.pb(stoll(top + "9"));
     }
-    For(i,1,501){
+    For(i,1,101){
         for(auto x:v){
-            if(!(x%i) && !ans[i]){
+            if(!ans[i] && !(x%i)){
                 ans[i] = x;
                 break;
             }
@@ -44,7 +45,7 @@ void solve(){
     int t; cin>>t;
     build();
     while(t--){
-        int n; cin>>n;
+    	int n; cin>>n;
         cout << ans[n] << endl;
     }
 }
@@ -52,4 +53,3 @@ int main(){
     faster();
     solve();
 }
-
