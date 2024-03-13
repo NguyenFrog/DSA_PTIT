@@ -17,36 +17,20 @@
 
 using namespace std;
 
-int n,k,X[100],cnt;
-bool check(){
-    int cnt = 1;
-    For(i,2,n+1){
-        if(X[i]==X[i-1]) cnt++;
-        else cnt = 1;
-        if(cnt>k) return false;
-    }
-    return true;
-}
-void print(){
-    For(i,1,n+1) cout << X[i];
-    cout << " ";
-}
-void Try(int i){
-    For(j,0,2){
-        X[i] = j;
-        if(i==n){
-            if(check()) cnt++;
-        }
-        else Try(i+1);
-    }
-}
 void solve(){
     int t; cin>>t;
     while(t--){
-        cin>>n>>k;
-        Try(1);
-        cout << cnt << endl;
-        cnt = 0;
+        int n; cin>>n;
+        ll a[n],b[n-1];
+        for(ll& x:a) cin>>x;
+        for(ll& x:b) cin>>x;
+        For(i,0,n){
+            if(i==n-1
+               || a[i]!=b[i]){
+                cout << i+1 << endl;
+                break;
+            }
+        }
     }
 }
 int main(){
