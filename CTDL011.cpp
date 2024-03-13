@@ -17,27 +17,35 @@
 
 using namespace std;
 
-void rev(stack<int>& st){
-    if(st.empty()) return;
-    int top = st.top();
-    st.pop();
-    rev(st);
-    st.push(top);
+int n,X[100];
+bool check(){
+    int cnt = 0;
+    For(i,1,n+1){
+        if(!X[i] && X[i+1]){
+            cnt++;
+            i++;
+        }
+    }
+    return cnt==2;
+}
+void print(){
+    For(i,1,n+1) cout << X[i];
+    cout << " ";
+}
+void Try(int i){
+    For(j,0,2){
+        X[i] = j;
+        if(i==n){
+            if(check()) print();
+        }
+        else Try(i+1);
+    }
 }
 void solve(){
     int t; cin>>t;
     while(t--){
-    	stack<int> st;
-        string x;
-        while(cin>>x){
-            if(x.empty()) break;
-            st.push(stoi(x));
-        }
-        rev(st);
-        while(!st.empty()){
-            cout << st.top() << ' ';
-            st.pop();
-        }
+        cin>>n;
+        Try(1);
         cout << endl;
     }
 }
